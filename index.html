@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day Streak Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="starfield" aria-hidden="true"></div>
+
+  <main class="app">
+    <header class="hero">
+      <div class="hero-main">
+        <div class="art flame" role="img" aria-label="Purple pixel flame"></div>
+        <div class="streak-copy">
+          <div class="streak-line">
+            <span id="current-streak" class="streak-number" aria-live="polite">0</span>
+            <h1 class="streak-title">Day Streak</h1>
+          </div>
+          <p class="subtitle">Keep going, legend! <span class="sparkle" aria-hidden="true">✦</span></p>
+        </div>
+      </div>
+      <div class="art cat" role="img" aria-label="Sleeping pixel-art black cat"></div>
+    </header>
+
+    <section class="panel dashboard" aria-label="This week">
+      <div class="week-card">
+        <div class="week" id="week-strip"></div>
+      </div>
+      <div class="record-bar">
+        <div class="record-left">
+          <div class="art trophy" role="img" aria-label="Golden trophy"></div>
+          <p>Longest Streak: <strong id="longest-streak">0</strong> Days</p>
+        </div>
+        <p class="fire-msg">
+          <span id="fire-msg">Start your streak today!</span>
+          <span class="art mini-fire" aria-hidden="true"></span>
+        </p>
+      </div>
+    </section>
+
+    <section class="panel progress-panel" aria-labelledby="progress-heading">
+      <div class="progress-head">
+        <h2 id="progress-heading">Monthly Progress</h2>
+        <span id="progress-pct" class="progress-pct">0%</span>
+      </div>
+      <div class="progress-track" id="progress-track" role="progressbar" aria-label="Monthly progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <p id="progress-count" class="progress-count">0 / 0 days completed</p>
+    </section>
+
+    <section class="panel calendar-panel" aria-label="Monthly calendar">
+      <div class="calendar-nav">
+        <button type="button" class="nav-btn" id="prev-month" aria-label="Previous month">&#8249;</button>
+        <div class="month-picker">
+          <select id="month-select" aria-label="Select month"></select>
+          <input id="year-input" type="number" min="1900" max="2100" step="1" aria-label="Select year" />
+        </div>
+        <button type="button" class="nav-btn" id="next-month" aria-label="Next month">&#8250;</button>
+        <button type="button" class="today-btn" id="today-btn">Today</button>
+      </div>
+
+      <div class="weekday-row" aria-hidden="true">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      </div>
+      <div class="calendar-grid" id="calendar-grid" role="group" aria-label="Days of the selected month"></div>
+
+      <div class="legend" aria-hidden="true">
+        <span><i class="swatch sw-completed"></i>Completed</span>
+        <span><i class="swatch sw-open"></i>Open</span>
+        <span><i class="swatch sw-today"></i>Today</span>
+        <span><i class="swatch sw-future"></i>Future</span>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="mood-dialog" class="mood-dialog" aria-labelledby="mood-title">
+    <div class="mood-form">
+      <h2 id="mood-title">How was your day?</h2>
+      <p id="mood-date" class="mood-date"></p>
+      <div class="mood-options" id="mood-options">
+        <button type="button" class="mood-btn" data-mood="amazing"><span class="mood-emoji" aria-hidden="true">🤩</span><span class="mood-label">Amazing</span></button>
+        <button type="button" class="mood-btn" data-mood="good"><span class="mood-emoji" aria-hidden="true">😊</span><span class="mood-label">Good</span></button>
+        <button type="button" class="mood-btn" data-mood="okay"><span class="mood-emoji" aria-hidden="true">😐</span><span class="mood-label">Okay</span></button>
+        <button type="button" class="mood-btn" data-mood="bad"><span class="mood-emoji" aria-hidden="true">😔</span><span class="mood-label">Bad</span></button>
+        <button type="button" class="mood-btn" data-mood="tough"><span class="mood-emoji" aria-hidden="true">😫</span><span class="mood-label">Tough</span></button>
+      </div>
+      <p class="mood-note">Your choice locks this day permanently.</p>
+      <button type="button" class="cancel-btn" id="mood-cancel">Cancel</button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
